@@ -1,8 +1,9 @@
 function TodoItem(props) {
-    const item = props.thething;
+    const item = props.item;
     const color = props.color;
     return (
-        <li style={{color: color}}>
+        <li style={{color:"red"}}
+        >
             {item}
         </li>
     )
