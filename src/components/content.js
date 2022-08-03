@@ -2,23 +2,25 @@ import { useState } from "react";
 import TodoList from "./todolist/TodoList";
 
 function Content() {
-    const todoItems = ["get milk", "get eggs" , "walk dog", "feed cat", "wash car"];
+    const [todoList, setTodoList] = useState([]);
 
-    let [myName, setMyName] = useState("");
+    let [newTodo, setNewTodo] = useState("");
     
     const onClickHandler = () => {
-        todoItems.push("A New Thing!")
-        
+        const newTodoList = [...todoList];
+        newTodoList.push(newTodo);
+        setTodoList(newTodoList);     
+        setNewTodo("");
     }
 
     return( 
         <div>
-            <input type="text" onChange={evt => { setMyName(evt.currentTarget.value) }}/>
+            <input type="text" onChange={evt => { setNewTodo(evt.currentTarget.value) }}
+                               value={newTodo}
+            />
+
             <button  onClick={onClickHandler}>Save</button>
-            <p>
-                My Name Is {myName}
-            </p>
-            <TodoList items={todoItems}/>
+            <TodoList items={todoList}/>
         </div>
     )
 }
